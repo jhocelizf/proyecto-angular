@@ -13,10 +13,12 @@ import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { FormFieldValidationErrorsPipe } from './pipes/form-validation-error.pipe';
+import { CambiarTamanoTituloDirective } from './directives/titulos.directives';
 
 @NgModule({
   declarations: [
       FormFieldValidationErrorsPipe,
+      CambiarTamanoTituloDirective,
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,7 @@ import { FormFieldValidationErrorsPipe } from './pipes/form-validation-error.pip
     MatIconModule,
     MatListModule,
     FormFieldValidationErrorsPipe,
+    CambiarTamanoTituloDirective,
   ]
 })
 export class SharedModule { }

@@ -18,6 +18,8 @@ export class StudentsComponent {
     'email',
     'role',
     'createdAt',
+    'actions',
+    
   ];
 
   students: IStudent[] = [
