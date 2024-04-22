@@ -8,7 +8,7 @@
     >
 <mat-list>
         <a mat-list-item>Inicio</a>
-        <a mat-list-item>Studiantes</a>
+        <a mat-list-item>Estudiantes</a>
         <a mat-list-item>Cursos</a>
 </mat-list>
     </mat-drawer>
@@ -17,24 +17,41 @@
     <!-- CONTENIDO A LA DERECHA DEL SIDEBAR -->
     <div class="example-sidenav-content">
 <!-- TOOLBAR SUPERIOR -->
-<mat-toolbar class="d-flex justify-content-between" color="primary">
-    <button
-        (click)="drawer.toggle()"
-        mat-icon-button
-        class="example-icon"
-        aria-label="Example icon-button with menu icon"
-    >
-<mat-icon>menu</mat-icon>
+
+
+<mat-toolbar color="primary">
+    <div class="d-flex justify-content-between align-items-center w-100">
+    <div>
+        <button
+            (click)="drawer.toggle()"
+            mat-icon-button
+            class="example-icon"
+            aria-label="Example icon-button with menu icon"
+        >
+        <mat-icon>menu</mat-icon>
         </button>
-        <h1 cambiarTamanoTitulo>Tu Academia</h1>
+        <span>Academi</span>
+    </div>
+      <div *ngIf="authStudent$ | async as student">
+        {{ student?.name }}
+    </div>
+    </div>
 </mat-toolbar>
 
+
 <main style="padding: 1rem">
+
+    <div>
+        <button (click)="login()" color="primary" mat-flat-button>Iniciar Sesion</button>
+        <button (click)="logout()" color="warn" mat-flat-button>Cerrar Sesion</button>
+    </div>
+    
+
+
         <app-students /> 
-        <!-- <app-pipes-y-directivas /> -->
 </main>
 
 <!-- TOOLBAR SUPERIOR -->
+
     </div>
-    <!-- CONTENIDO A LA DERECHA DEL SIDEBAR -->
 </mat-drawer-container>
