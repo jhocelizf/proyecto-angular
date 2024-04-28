@@ -1,1 +1,31 @@
-<p>sales works!</p>
+@if (isLoading) {
+    <mat-spinner></mat-spinner>
+    } @else {
+    <form [formGroup]="saleForm" action="">
+    <mat-form-field>
+        <mat-label>Producto</mat-label>
+        <mat-select formControlName="course">
+          <mat-option [value]="course" *ngFor="let course of courses"
+            >{{ course.name }} - {{ course.price | currency }}</mat-option
+        >
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Cantidad</mat-label>
+        <input formControlName="quantity" matInput type="number" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Comprador</mat-label>
+        <mat-select formControlName="buyer">
+          <mat-option [value]="student" *ngFor="let student of students"
+            >{{ student.name }} {{ student.lastName }}</mat-option
+    >
+        </mat-select>
+    </mat-form-field>
+    <button (click)="createSale()" mat-button>Crear</button>
+    </form>
+    
+    <pre>{{ saleForm.value | json }}</pre>
+    
+    <pre>{{ sales | json }}</pre>
+    }
