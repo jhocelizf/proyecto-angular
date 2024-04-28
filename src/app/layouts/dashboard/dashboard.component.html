@@ -7,9 +7,10 @@
         [mode]="isMobile() ? 'over' : 'side'"
     >
 <mat-list>
-        <a mat-list-item>Inicio</a>
-        <a mat-list-item>Estudiantes</a>
-        <a mat-list-item>Cursos</a>
+        <a routerLink="home" mat-list-item>Inicio</a>
+        <a routerLink="students" mat-list-item>Estudiantes</a>
+        <a routerLink="cursos" mat-list-item>Cursos</a>
+        <a (click)="logout()" mat-list-item>Cerrar sesion</a>
 </mat-list>
     </mat-drawer>
     <!-- SIDEBAR -->
@@ -43,12 +44,11 @@
 
     <div>
         <button (click)="login()" color="primary" mat-flat-button>Iniciar Sesion</button>
-        <button (click)="logout()" color="warn" mat-flat-button>Cerrar Sesion</button>
     </div>
     
 
-
-        <app-students /> 
+        <router-outlet/>
+        <!-- <app-students />  -->
 </main>
 
 <!-- TOOLBAR SUPERIOR -->
