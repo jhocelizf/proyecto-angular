@@ -20,7 +20,13 @@ export class Student implements IStudent {
       public createdAt: Date
   ) {}}
 
-
+  export interface CreateUserPayload {
+    firstName: string | null;
+    lastName: string | null;
+    email: string | null;
+    role: UserRole | null;
+    createdAt: Date | null;
+  }
 
 /* alternarAprobado(): void {
     this.aprobado = !this.aprobado;

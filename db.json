@@ -1,0 +1,38 @@
+{
+  "students": [
+    {
+      "id": "3071",
+      "name": "kris",
+      "lastName": "figueroa",
+      "email": "kris@gmail.com",
+      "role": "STUDENT",
+      "fecha": "19/03/2023"
+    },
+    {
+      "id": "b1ba",
+      "name": "kris",
+      "lastName": "figueroa",
+      "email": "kris@gmail.com",
+      "role": "STUDENT",
+      "fecha": "19/03/2023"
+    },
+    {
+      "id": "907b",
+      "name": "kris",
+      "lastName": "figueroa",
+      "email": "kris@gmail.com",
+      "role": "STUDENT",
+      "fecha": "19/03/2023"
+    },
+    {
+      "id": "9b4c",
+      "name": "kris",
+      "lastName": "figueroa",
+      "email": "kris@gmail.com",
+      "role": "STUDENT",
+      "fecha": "19/03/2023"
+    }
+  ],
+  "sales": [],
+  "courses": []
+}
