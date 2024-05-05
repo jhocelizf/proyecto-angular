@@ -36,6 +36,7 @@ import { CambiarTamanoTituloDirective } from './directives/titulos.directives';
     ReactiveFormsModule,
     MatIconModule,
     MatListModule,
+    FormsModule,
     FormFieldValidationErrorsPipe,
     CambiarTamanoTituloDirective,
   ]

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IStudent } from './pages/students/models';
 import { AuthService } from '../../core/services/auth.services';
 import { Observable, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,7 @@ export class DashboardComponent {
   authStudentubscription?: Subscription;
 
 
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService, private router: Router){
     this.authStudent$ = this.authService.authStudent$;
   }
 
@@ -34,18 +35,12 @@ export class DashboardComponent {
     });
   }
 
-  login(): void {
-    this.authService.login();
-  }
-
   logout(): void {
     this.authService.logout();
+    this.router.navigate(['auth']);
   }
-
 
   isMobile(): boolean {
     return window.innerWidth <= 280;
   }
-
-
 }
