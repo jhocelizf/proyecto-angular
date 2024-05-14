@@ -9,7 +9,7 @@ export class StudentsService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getStudents(): Observable<IStudent[]> {
+  getStudent(): Observable<IStudent[]> {
     return this.httpClient.get<IStudent[]>(environment.baseAPIURL + '/students').pipe(
       catchError((err) => {
         console.log('error', err);
@@ -21,16 +21,25 @@ export class StudentsService {
   getStudentById(id: string): Observable<IStudent | undefined> {
     return this.httpClient.get<IStudent>(environment.baseAPIURL +'/students' + id)
   }
-
   
-/*   getUserById(id: string): Observable<IUser | undefined> {
-    return this.httpClient.get<IUser>(`${environment.baseAPIURL}/users/${id}`);
-  }
- */
-  createUser(payload: CreateUserPayload): Observable<IStudent> {
+
+  createStudent(payload: CreateUserPayload): Observable<IStudent> {
     return this.httpClient.post<IStudent>(
       `${environment.baseAPIURL}/students`,
       payload
     );
   }
+
+
+  editStudent(payload: CreateUserPayload): Observable<IStudent> {
+    return this.httpClient.put<IStudent>(
+      `${environment.baseAPIURL}/students`,
+      payload
+    );
 }
+
+  deleteStudent(deleteStudent: IStudent): Observable<IStudent[]>{
+    return this.httpClient.delete<IStudent[]>(`${environment.baseAPIURL}/students${deleteStudent.id}`)
+  }
+
+};
