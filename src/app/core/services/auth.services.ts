@@ -10,8 +10,8 @@ export class AuthService {
         id: 1,
         createdAt: new Date(),
         email: 'email@mail.com',
-        name: 'goku',
-        lastName: 'son',
+        name: 'carlos',
+        lastName: 'soler',
         role: 'ADMIN',
     };
 

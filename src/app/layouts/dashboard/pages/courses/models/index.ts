@@ -4,3 +4,7 @@ export interface ICourse {
     price: number;
   }
   
+export interface ICreateCoursePayload {
+  name: string;
+  price: number;
+}

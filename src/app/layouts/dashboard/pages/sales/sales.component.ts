@@ -6,6 +6,14 @@ import { CoursesService } from '../courses/courses.service';
 import { ICourse } from '../courses/models';
 import { StudentsService } from '../students/students.service';
 import { IStudent } from '../students/models';
+import { Store } from '@ngrx/store';
+import {
+  selectLoadingSales,
+  selectSaleList,
+  selectSalesError,
+} from './store/sale.selectors';
+import { SaleActions } from './store/sale.actions';
+import { first, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sales',
@@ -13,11 +21,10 @@ import { IStudent } from '../students/models';
   styleUrl: './sales.component.scss',
 })
 export class SalesComponent implements OnInit {
-  sales: ISale[] = [];
   courses: ICourse[] = [];
   students: IStudent[] = [];
 
-  isLoading = false;
+  existsUnsavedChanges = false;
 
   saleForm = new FormGroup<ISaleForm>({
     quantity: new FormControl(1),
@@ -25,16 +32,34 @@ export class SalesComponent implements OnInit {
     course: new FormControl(null),
   });
 
+  loadingSales$: Observable<boolean>;
+  error$: Observable<unknown>;
+  sales$: Observable<ISale[]>;
+
   constructor(
     private salesService: SalesService,
     private coursesService: CoursesService,
-    private studentsService: StudentsService
-  ) {}
+    private studentsService: StudentsService,
+    private store: Store
+  ) {
+    this.loadingSales$ = this.store.select(selectLoadingSales);
+    this.sales$ = this.store.select(selectSaleList);
+    this.error$ = this.store.select(selectSalesError);
+  }
 
   ngOnInit(): void {
     this.loadSales();
     this.loadCourses();
     this.loadStudents();
+    this.subscribeToSaleFormChange();
+  }
+
+  subscribeToSaleFormChange(): void {
+    this.saleForm.valueChanges.subscribe({
+      next: (v) => {
+        this.existsUnsavedChanges = true;
+      },
+    });
   }
 
   createSale() {
@@ -46,7 +71,7 @@ export class SalesComponent implements OnInit {
   }
 
   loadStudents() {
-    this.studentsService.getStudents().subscribe({
+    this.studentsService.getStudent().subscribe({
       next: (students) => {
         this.students = students;
       },
@@ -54,19 +79,12 @@ export class SalesComponent implements OnInit {
   }
 
   loadCourses() {
-    this.courses = this.coursesService.getCourses();
+    this.coursesService.getCourses().subscribe({
+      next: (v) => (this.courses = v),
+    })
   }
 
   loadSales() {
-    this.isLoading = true;
-    this.salesService.getSales().subscribe({
-      next: (sales) => {
-        this.sales = sales;
-      },
-      error: () => {},
-      complete: () => {
-        this.isLoading = false;
-      },
-    });
+    this.store.dispatch(SaleActions.loadSales())
   }
 }
